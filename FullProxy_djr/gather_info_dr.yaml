@@ -1,6 +1,6 @@
 -
   name: 'Collect BIG-IP facts'
-  hosts: bigips
+  hosts: user
   connection: local
   tasks:
     -
