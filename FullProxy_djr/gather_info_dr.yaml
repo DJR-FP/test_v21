@@ -1,9 +1,9 @@
 -
-  name: 'Collect BIG-IP facts'
-  hosts: bigips
-  connection: local
-  tasks:
-    -
-      name: 'Collect BIG-IP facts'
-      bigip_facts: { include: 'interface,vlan,self_ip,software,system_info,device,provision', password: '{{ bigip_password }}', server: '{{ inventory_hostname }}', user: '{{ bigip_username }}', validate_certs: '{{ validate_certs }}' }
-      delegate_to: localhost
+    name: 'Collect BIG-IP facts'
+    hosts: bigips
+    connection: local
+    tasks:
+        -
+            name: 'Collect BIG-IP facts'
+            bigip_facts: {include: 'address_class,certificate,client_ssl_profile,device,device_group,interface,key,node,pool,provision,rule,self_ip,software,system_info,traffic_group,trunk,virtual_address,virtual_server,vlan', password: '{{ bigip_password }}', server: '{{ inventory_hostname }}', user: '{{ bigip_username }}', validate_certs: '{{ validate_certs }}'}
+            delegate_to: localhost
