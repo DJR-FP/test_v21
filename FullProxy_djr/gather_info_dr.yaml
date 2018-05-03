@@ -5,5 +5,5 @@
     tasks:
         -
             name: 'Collect BIG-IP facts'
-            bigip_facts: {include: 'address_class,,vlan', password: '{{ bigip_password }}', server: '{{ inventory_hostname }}', user: '{{ bigip_username }}', validate_certs: '{{ validate_certs }}'}
+            bigip_facts: {include: 'address_class,vlan', password: '{{ bigip_password }}', server: '{{ inventory_hostname }}', user: '{{ bigip_username }}', validate_certs: '{{ validate_certs }}'}
             delegate_to: localhost
