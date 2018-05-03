@@ -1,0 +1,14 @@
+- name: Set the hostname of the BIG-IP
+  hosts: bigips
+  connection: local
+
+  tasks:
+      - name: Set the hostname of the BIG-IP
+        bigip_hostname:
+            hostname: LTM-T1-1-DC1.ddr.lgb.lab100.com
+            password: "{{ bigip_password }}"
+            server: "{{ inventory_hostname }}"
+            user: "{{ bigip_username }}"
+            validate_certs: "{{ validate_certs }}"
+        delegate_to: localhost
+

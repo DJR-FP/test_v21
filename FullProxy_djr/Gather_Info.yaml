@@ -1,0 +1,9 @@
+-
+  name: 'Collect BIG-IP facts'
+  hosts: bigips
+  connection: local
+  tasks:
+    -
+      name: 'Collect BIG-IP facts'
+      bigip_facts: { include: 'interface,vlan,self_ip,software,system_info,device,provision', password: '{{ bigip_password }}', server: '{{ inventory_hostname }}', user: '{{ bigip_username }}', validate_certs: '{{ validate_certs }}' }
+      delegate_to: localhost

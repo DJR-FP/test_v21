@@ -1,0 +1,55 @@
+- name: Create a VIP, pool, pool members, monitor and nodes
+  hosts: bigips
+  connection: local
+
+  tasks:
+      - name: Create a VIP
+        bigip_virtual_server:
+            description: "FP_vip"
+            destination: "10.211.0.36"
+            password: "{{ bigip_password }}"
+            name: "FP_vip"
+            pool: "FP_pool"
+            port: "8081"
+            server: "{{ inventory_hostname }}"
+            snat: "Automap"
+            user: "{{ bigip_username }}"
+            state: "absent"
+            all_profiles:
+                - "http"
+            validate_certs: "{{ validate_certs }}"
+        delegate_to: localhost
+
+      - name: Create a pool
+        bigip_pool:
+            lb_method: "round_robin"
+            name: "FP_pool"
+            password: "{{ bigip_password }}"
+            server: "{{ inventory_hostname }}"
+            slow_ramp_time: "120"
+            user: "{{ bigip_username }}"
+            validate_certs: "{{ validate_certs }}"
+            state: "absent"
+            monitor_type: and_list
+            monitors: http
+        delegate_to: localhost
+
+      - name: Create node1
+        bigip_node:
+            name: "FP_node-1"
+            password: "{{ bigip_password }}"
+            server: "{{ inventory_hostname }}"
+            user: "{{ bigip_username }}"
+            state: "absent"
+            validate_certs: "{{ validate_certs }}"
+        delegate_to: localhost
+
+      - name: Create node2
+        bigip_node:
+            name: "FP_node-2"
+            password: "{{ bigip_password }}"
+            server: "{{ inventory_hostname }}"
+            user: "{{ bigip_username }}"
+            state: "absent"
+            validate_certs: "{{ validate_certs }}"
+        delegate_to: localhost
