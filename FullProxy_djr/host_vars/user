@@ -1,0 +1,4 @@
+bigip_username: "donald"
+bigip_password: "dukes123"
+bigip_port: 443
+validate_certs: "no"
